@@ -5,6 +5,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <link rel="icon" href="images\favicon.png" sizes="16x16" type="image/png">
     <script src="script.js"></script>
+    <link href="style.css" rel="stylesheet" type="text/css">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
 
@@ -12,56 +13,129 @@
 
 <body>
     <div class="container">
-        <h1>
-            <center>L-Antica-Pizzeria</center>
+        <header>
+            <div id="headertxt">
+                <h1>
+                    <center>L-Antica-Pizzeria</center>
+                </h1>
+                <h1>
+                    <center>The best pizza </center>
+                </h1>
+                <h1>
+                    <center> in town</center>
+                </h1>
+            </div>
 
-        </h1>
-        <h1>
-            Form
-        </h1>
+        </header>
+        <div class="row">
 
-        </select>
-        <br></br>
-        <select id="size">
+            <div class="col-md">
+                <h1>
+                    Select your Pizza:
+                </h1>
+
+                <h2>size:</h2>
+                <select id="size">
             <option>small</option>
             <option>large</option>
             <option>medium</option>
           </select>
-        <br></br>
-        <select id="crust">
+                <br></br>
+                <h2>crust</h2>
+                <select id="crust">
             <option>cheeseStuffed</option>
             <option>pizzaBagels</option>
             <option>flatBread</option>
             <option>thinCrust</option>
             </select>
-        <br></br>
-        <label for="myCheck">Bacon</label>
-        <input type="checkbox" name="toppings" id="baconid" value="bacon">
-        <br></br>
-        <label for="myCheck">Cheese</label>
-        <input type="checkbox" name=toppings id="cheeseid" value="cheese">
-        <br></br>
-        <label for="myCheck">ham</label>
-        <input type="checkbox" name=toppings id="hamid" value="ham">
-        <br></br>
+                <br></br>
+                <h2>Toppings</h2>
+                <label for="myCheck">Bacon</label>
+                <input type="checkbox" name="toppings" id="baconid" value="bacon">
+                <br></br>
+                <label for="myCheck">Cheese</label>
+                <input type="checkbox" name=toppings id="cheeseid" value="cheese">
+                <br></br>
+                <label for="myCheck">ham</label>
+                <input type="checkbox" name=toppings id="hamid" value="ham">
+                <br></br>
 
-        <label for="myCheck">mushrooms</label>
-        <input type="checkbox" name=toppings id="mushroomid" value="mushrooms">
-        <br></br>
-        <label for="myCheck">onions</label>
-        <input type="checkbox" name=toppings id="onionsid" value="onions">
-        <br></br>
-        <label for="myCheck">pepperoni</label>
-        <input type="checkbox" name=toppings id="pepperoniid" value="pepperoni">
-        <br></br>
+                <label for="myCheck">mushrooms</label>
+                <input type="checkbox" name=toppings id="mushroomid" value="mushrooms">
+                <br></br>
+                <label for="myCheck">onions</label>
+                <input type="checkbox" name=toppings id="onionsid" value="onions">
+                <br></br>
+                <label for="myCheck">pepperoni</label>
+                <input type="checkbox" name=toppings id="pepperoniid" value="pepperoni">
+                <br></br>
 
-        <label for="myCheck">olives</label>
-        <input type="checkbox" name=toppings id="olivesid" value="olives">
-        <br></br>
-        <input id="btnSubmit" type="button" value="Submit" />
-    </div>
+                <label for="myCheck">olives</label>
+                <input type="checkbox" name=toppings id="olivesid" value="olives">
+                <br></br>
 
-    </div>
+                <label for="myCheck">How many</label>
+                <input type="text" name=number id="numberid" value="1-20">
+                <br></br>
+
+
+
+
+                <!--
+                <input type="radio" id="yesid" name="delivery" value="Yes">
+                <label for="yesid">Yes</label><br>
+                <input type="radio" id="noid" name="delivery" value="No">
+                <label for="noid">No</label><br>
+                <br>
+                -->
+
+                <input id="btnSubmit" type="button" value="Order" />
+
+                <br></br>
+                <br></br>
+            </div>
+            <div class="col-md">
+
+                <h2>Order Summary</h2>
+
+                <div class="summary">
+
+                    <!--    <input id="btndeliver" type="button" value="Deliver to my home" />-->
+
+                </div>
+                <div class="totalP">
+
+                </div>
+                <br>
+                <div class="locationdetails">
+                    <div class="form-group">
+                        <h2>Enter your delivery details:</h2>
+                        <label for="new-last-name">Name</label>
+                        <input type="text" class="form-control name">
+
+                        <div class="form-group">
+                            <label for="new-street">Street</label>
+                            <input type="text" class="form-control new-street">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-city">City</label>
+                            <input type="text" class="form-control new-city">
+                        </div>
+                        <div class="form-group">
+                            <label for="new-county">County</label>
+                            <input type="text" class="form-control new-county">
+                        </div>
+
+                        <input id="btncheckout" type="button" value="checkout" />
+                        <br>
+                        <div class="checkout">
+                            <h3 id="checkoutid"></h3>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </div>
 </body>
 
 </Html>
