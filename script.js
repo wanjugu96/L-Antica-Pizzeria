@@ -1,9 +1,76 @@
 $(document).ready(function() {
 
     // Tests
-    //collecting form Values:
+    //collecting form Values:\
+    function price(size, crust, toppings) {
+        //toppings = toppings[];
+        //size prices
+        let pizzaPrice = 0
+        switch (size) {
+            case "large":
+                pizzaPrice += 1000;
+                break;
+            case "medium":
+                pizzaPrice += 800;
+                break;
+            case "small":
+                pizzaPrice += 600;
+        }
+
+
+        //crust pricing
+        switch (crust) {
+            case "cheeseStuffed":
+                pizzaPrice += 150
+                break;
+
+            case "pizzaBagels":
+                pizzaPrice += 150
+                break;
+            case "flatBread":
+                pizzaPrice += 100
+                break;
+
+            case "thinCrust":
+                pizzaPrice += 0;
+        }
+
+        //toppings prices
+        for (let i = 0; i < toppings.length; i++) {
+            switch (toppings[i]) {
+                case "pepperoni":
+                    pizzaPrice += 100
+                    break;
+                case "mushrooms":
+                    pizzaPrice += 100
+                    break;
+                case "onions":
+                    pizzaPrice += 100
+                    break;
+                case "sausage":
+                    pizzaPrice += 100
+                    break;
+                case "bacon":
+                    pizzaPrice += 100
+                    break;
+                case "cheese":
+                    pizzaPrice += 100
+                    break;
+                case "olives":
+                    pizzaPrice += 100
+                    break;
+                case "peppers":
+                    pizzaPrice += 100
+            }
+        }
+
+        return pizzaPrice;
+    }
+
+
     $("#btnSubmit").click(function() {
 
+        //var getPrice= priceFunction() 
         function Pizza(size, crust, toppings, price) {
             this.size = size;
             this.crust = crust;
@@ -17,70 +84,10 @@ $(document).ready(function() {
         }
 
         //Pizze price function
-        function price(size, crust, toppings) {
-            //toppings = toppings[];
-            //size prices
-            let pizzaPrice = 0
-            switch (size) {
-                case "large":
-                    pizzaPrice += 1000;
-                    break;
-                case "medium":
-                    pizzaPrice += 800;
-                    break;
-                case "small":
-                    pizzaPrice += 600;
-            }
 
+        //   console.log(pizzaPrice)
+        // let price1 = pizzaPrice;
 
-            //crust pricing
-            switch (crust) {
-                case "cheeseStuffed":
-                    pizzaPrice += 150
-                    break;
-
-                case "pizzaBagels":
-                    pizzaPrice += 150
-                    break;
-                case "flatBread":
-                    pizzaPrice += 100
-                    break;
-
-                case "thinCrust":
-                    pizzaPrice += 0;
-            }
-
-            //toppings prices
-            for (let i = 0; i < toppings.length; i++) {
-                switch (toppings[i]) {
-                    case "pepperoni":
-                        pizzaPrice += 100
-                        break;
-                    case "mushrooms":
-                        pizzaPrice += 100
-                        break;
-                    case "onions":
-                        pizzaPrice += 100
-                        break;
-                    case "sausage":
-                        pizzaPrice += 100
-                        break;
-                    case "bacon":
-                        pizzaPrice += 100
-                        break;
-                    case "cheese":
-                        pizzaPrice += 100
-                        break;
-                    case "olives":
-                        pizzaPrice += 100
-                        break;
-                    case "peppers":
-                        pizzaPrice += 100
-                }
-            }
-
-            return pizzaPrice;
-        }
 
         let selectedToppings = [];
         $('input[name="toppings"]:checked').each(function() {
@@ -89,42 +96,60 @@ $(document).ready(function() {
 
         let sizes = $("#size").val();
         let crust = $("#crust").val();
-        console.log(`The selected toppings are ${selectedToppings}`)
-        console.log(`the size is ${sizes}`)
-        console.log(`the crust is ${crust}`)
-
+        let delivery = $("input[type='radio'][name='delivery']:checked").val();
+        let number = $("#numberid").val();
+        // let deliveryn = $('#noid').val();
 
         let priceOfNewPizza = price(sizes, crust, selectedToppings);
         let newPizzaSelected = new Pizza(sizes, crust, selectedToppings, priceOfNewPizza)
+
         console.log(` newPizzaSelected price is ${priceOfNewPizza}`)
         console.log(newPizzaSelected.fullPizza())
+        console.log(`The selected toppings are ${selectedToppings}`)
+        console.log(`the size is ${sizes}`)
+        console.log(`the crust is ${crust}`)
+        console.log(`the delivery is ${delivery}`)
+        console.log(`the delivery is ${number}`)
 
-        let thePrice = price("large", "pizzaBagels", ["pepperoni", "bacon", "cheese", "mushrooms"]);
-        let hawaiian = new Pizza("large", "pizzaBagels", ["pepperoni", "bacon", "cheese,", "mushrooms"], thePrice)
-        console.log(` hawaian pizza price is ${thePrice}`)
-        console.log(hawaiian.fullPizza())
 
-        // let cheesy = new Pizza("small", "cheeseStuffed", ["bacon", "cheese"])
-        let thePrice1 = price("small", "cheeseStuffed", ["bacon", "cheese"]);
-        let cheesy = new Pizza("small", "cheeseStuffed", ["bacon", "cheese"], thePrice1)
-        console.log(cheesy.fullPizza())
-        cheesy.price = thePrice1;
-        hawaina = console.log(` cheesy pizza price is ${thePrice1}`)
+        let fullPrice = priceOfNewPizza * number;
 
-        let totalPrice = [];
-        totalPrice.push(thePrice)
-        totalPrice.push(thePrice1)
 
-        let fullPrice = 0;
-        for (let j = 0; j < totalPrice.length; j++) {
+        let newText = newPizzaSelected.fullPizza()
+        $(".summary").prepend("<li>" +
+            newText + "</li>")
+        $(".totalp").prepend("<p>- Your total price for " + number + " pizza(s)" + " is ksh " + fullPrice + "</p>")
 
-            fullPrice = fullPrice + totalPrice[j]
-        }
-        console.log(`The price of all pizzas is ${fullPrice}`)
 
+
+        $(".totalp").append('<input id="btndeliver" type="button" value="Deliver to my home" />')
+            //
+        $("#btndeliver").click(function() {
+            $(".locationdetails").show()
+
+        })
     })
 
+    $("#btncheckout").click(function() {
+            var name = $("input.name").val();
+            var inputtedStreet = $("input.new-street").val();
+            var inputtedCity = $("input.new-city").val()
+            var inputtedCounty = $("input.new-county").val()
 
+            console.log(name)
+            console.log(inputtedCity)
+            console.log(inputtedCounty)
+            console.log(inputtedStreet)
+
+            let text = ""
+            text = "Dear " + name + " We will deliver your order at " + inputtedStreet + " " + inputtedCity + " " +
+                inputtedCounty + " " + " at " + "ksh.100"
+            console.log(text)
+            document.getElementById("checkoutid").innerHTML = text
+
+        })
+        //let num = priceFunction()
+        //console.log(priceOfNewPizza)
 
 
 })
