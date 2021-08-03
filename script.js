@@ -68,7 +68,7 @@ $(document).ready(function() {
     }
 
 
-    $("#btnSubmit").click(function() {
+    $("#btnSubmit").one("click", function() {
 
         //var getPrice= priceFunction() 
         function Pizza(size, crust, toppings, price) {
@@ -124,13 +124,13 @@ $(document).ready(function() {
 
         $(".totalp").append('<input id="btndeliver" type="button" value="Deliver to my home" />')
             //
-        $("#btndeliver").click(function() {
+        $("#btndeliver").one("click", function() {
             $(".locationdetails").show()
 
         })
     })
 
-    $("#btncheckout").click(function() {
+    $("#btncheckout").one("click", function() {
             var name = $("input.name").val();
             var inputtedStreet = $("input.new-street").val();
             var inputtedCity = $("input.new-city").val()
